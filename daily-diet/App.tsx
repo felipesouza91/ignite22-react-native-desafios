@@ -10,6 +10,7 @@ import {
 import theme from '@theme/index'
 import { Home } from '@screens/Home'
 import { Statistic } from '@screens/Statistic'
+import { NewMeal } from '@screens/NewMeal'
 
 export default function App() {
   const [fontsLoaded] = useFonts({ NunitoSans_700Bold, NunitoSans_400Regular })
@@ -21,7 +22,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
-      <Statistic />
+      <NewMeal />
     </ThemeProvider>
   )
 }

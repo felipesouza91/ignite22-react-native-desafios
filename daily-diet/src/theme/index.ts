@@ -28,4 +28,8 @@ export default {
     '2XG': 24,
     '3XG': 32,
   },
+  LINE_HEIGHT: {
+    BASE: '41.6px',
+    SMALL: '18.2px',
+  },
 } as const

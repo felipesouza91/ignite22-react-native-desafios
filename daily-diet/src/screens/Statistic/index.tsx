@@ -8,13 +8,18 @@ import {
   Content,
   Title,
   SnackContainer,
+  Button,
+  ArrowLeftIcon,
 } from './styles'
 
 const Statistic: React.FC = () => {
-  const percenter = 30
+  const percenter = 50
   return (
     <Container isDanger={percenter < 40}>
       <TitleContainer>
+        <Button>
+          <ArrowLeftIcon isDanger={percenter < 40} />
+        </Button>
         <TotalTitle>{percenter}%</TotalTitle>
         <SubTitle>das refeições dentro da dieta</SubTitle>
       </TitleContainer>
