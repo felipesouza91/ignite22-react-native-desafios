@@ -7,6 +7,7 @@ interface ITypeProps {
 
 export const Container = styled.TouchableOpacity<ITypeProps>`
   height: 50px;
+  padding: 0 24px;
   border-radius: 6px;
   flex-direction: row;
   align-items: center;
