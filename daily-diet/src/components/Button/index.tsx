@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacityProps } from 'react-native'
-import { Container, Label, PencilIcon } from './styles'
+import { Container, Label, PencilIcon, TrashIcon } from './styles'
 
 interface IButtonProps extends TouchableOpacityProps {
   icon?: 'pencil' | 'trash'
@@ -17,7 +17,7 @@ const Button: React.FC<IButtonProps> = ({
   return (
     <Container type={type} {...rest}>
       {icon === 'pencil' && <PencilIcon type={type} />}
-      {icon === 'trash' && <PencilIcon type={type} />}
+      {icon === 'trash' && <TrashIcon type={type} />}
       <Label type={type}>{label}</Label>
     </Container>
   )
