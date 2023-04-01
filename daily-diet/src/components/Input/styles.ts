@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/native'
 
 interface ITextAreaProps {
   isTestArea: boolean
+  isFocused: boolean
 }
 
 export const Container = styled.View`
@@ -20,10 +21,17 @@ export const Label = styled.Text`
 export const InputText = styled.TextInput.attrs(() => ({
   textAlignVertical: 'top',
 }))<ITextAreaProps>`
+  ${({ isFocused, theme }) =>
+    isFocused
+      ? css`
+          border: 1px solid ${theme.COLORS.GRAY_300};
+        `
+      : css`
+          border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
+        `}
   width: 100%;
   padding: 14px;
   height: ${({ isTestArea }) => (isTestArea ? '120px' : '52px')};
-  border: 1px solid ${({ theme }) => theme.COLORS.GRAY_500};
   align-items: center;
   justify-content: center;
   border-radius: 6px;

@@ -5,7 +5,7 @@ interface IContainerProps {
   isWarning: boolean
 }
 
-export const Container = styled.View<IContainerProps>`
+export const Container = styled.TouchableOpacity<IContainerProps>`
   margin-top: 36px;
   width: 100%;
   padding: 20px 16px;

@@ -3,12 +3,14 @@ import Button from '@components/Button'
 import successImage from '@assets/success.png'
 import unsuccessImage from '@assets/unsuccess.png'
 import { Container, Title, Subtitle, PageImage, BoldText } from './styles'
-
-interface ICompleteProps {
-  success?: boolean
-}
-
-const Complete: React.FC<ICompleteProps> = ({ success = false }) => {
+import { useRoute, useNavigation } from '@react-navigation/native'
+const Complete: React.FC = () => {
+  const { params } = useRoute()
+  const navigation = useNavigation()
+  const { success } = params as { success: boolean }
+  function handleNavigation() {
+    navigation.navigate('Home')
+  }
   return (
     <Container>
       <Title success={success}>
@@ -27,7 +29,7 @@ const Complete: React.FC<ICompleteProps> = ({ success = false }) => {
       )}
 
       <PageImage source={success ? successImage : unsuccessImage} />
-      <Button label="Ir para a página inicial" />
+      <Button label="Ir para a página inicial" onPress={handleNavigation} />
     </Container>
   )
 }

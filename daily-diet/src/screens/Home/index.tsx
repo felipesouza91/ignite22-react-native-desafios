@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Header } from '@components/Header'
 
 import { Box } from './components/Box'
-import { Container, List, SectionText, Span } from './styles'
+import {
+  Container,
+  List,
+  SectionText,
+  Span,
+  EmptyContainer,
+  Label,
+} from './styles'
 import Button from '@components/Button'
 import { FoodTile } from './components/FoodTile'
-import dayjs from 'dayjs'
 import { View } from 'react-native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { getAllMeal } from '@utils/meals/repository'
 export interface IFoodData {
-  title: string
+  id: string
+  name: string
   dateTime: Date
   description: string
   isHealthy: boolean
@@ -19,70 +28,44 @@ export interface ISectionFood {
   data: IFoodData[]
 }
 
-const DATA: ISectionFood[] = [
-  {
-    title: '12.08.22',
-    data: [
-      {
-        title: 'name',
-        dateTime: dayjs().add(1, 'hour').toDate(),
-        description: 'X-tudo',
-        isHealthy: false,
-      },
-      {
-        title: 'name',
-        dateTime: dayjs().add(2, 'hour').toDate(),
-        description: 'Whey protein com leite',
-        isHealthy: true,
-      },
-      {
-        title: 'name',
-        dateTime: dayjs().add(3, 'hour').toDate(),
-        description: 'Salada cesar com frango grelhado',
-        isHealthy: true,
-      },
-      {
-        title: 'name',
-        dateTime: dayjs().add(4, 'hour').toDate(),
-        description: 'Vitamina de banana com abacate',
-        isHealthy: true,
-      },
-    ],
-  },
-  {
-    title: '11.08.22',
-    data: [
-      {
-        title: 'name',
-        dateTime: dayjs().subtract(1, 'day').add(4, 'hour').toDate(),
-        description: 'Vitamina de banana com abacate',
-        isHealthy: true,
-      },
-      {
-        title: 'name',
-        dateTime: dayjs().subtract(1, 'day').add(2, 'hour').toDate(),
-        description: 'Vitamina de banana com abacate',
-        isHealthy: true,
-      },
-    ],
-  },
-]
-
 const Home: React.FC = () => {
+  const [data, setData] = useState<ISectionFood[]>([])
+  const navigation = useNavigation()
+  const loadData = useCallback(() => {
+    getAllMeal().then((data) => {
+      setData(data)
+    })
+  }, [])
+
+  function handleNavigation() {
+    navigation.navigate('NewMeal', {})
+  }
+
+  useFocusEffect(loadData)
+
   return (
     <Container>
       <Header />
+
       <Box percent={30} />
       <Span>Refeições</Span>
-      <Button label="Nova refeição" icon="pencil" />
+      <Button label="Nova refeição" icon="pencil" onPress={handleNavigation} />
       <List
-        sections={DATA}
+        showsVerticalScrollIndicator={false}
+        style={{ marginTop: 32 }}
+        sections={data}
         keyExtractor={(item, index) => item.dateTime.toString()}
         renderItem={({ item }) => <FoodTile data={item} />}
         renderSectionHeader={({ section: { title } }) => (
           <SectionText>{title}</SectionText>
         )}
+        SectionSeparatorComponent={() => <View style={{ height: 12 }} />}
         ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+        ListEmptyComponent={() => (
+          <EmptyContainer>
+            <Label>Nenhum registro encontrado</Label>
+          </EmptyContainer>
+        )}
       />
     </Container>
   )

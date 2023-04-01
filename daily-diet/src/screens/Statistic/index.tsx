@@ -11,13 +11,17 @@ import {
   Button,
   ArrowLeftIcon,
 } from './styles'
-
+import { useNavigation } from '@react-navigation/native'
 const Statistic: React.FC = () => {
   const percenter = 50
+  const navigate = useNavigation()
+  function handleNavigate() {
+    navigate.navigate('Home')
+  }
   return (
     <Container isDanger={percenter < 40}>
       <TitleContainer>
-        <Button>
+        <Button onPress={handleNavigate}>
           <ArrowLeftIcon isDanger={percenter < 40} />
         </Button>
         <TotalTitle>{percenter}%</TotalTitle>

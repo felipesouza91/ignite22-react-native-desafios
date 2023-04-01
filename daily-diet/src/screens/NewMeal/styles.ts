@@ -1,19 +1,24 @@
+import { SafeAreaView } from 'react-native-safe-area-context'
 import styled, { css } from 'styled-components/native'
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex: 1;
   padding-top: 40px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_500};
 `
-export const Content = styled.View`
-  flex: 1;
-  width: 100%;
+
+export const ScrollView = styled.ScrollView`
   margin-top: 24px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 40px 24px;
+`
+export const Content = styled.KeyboardAvoidingView`
+  flex: 1;
+  width: 100%;
   gap: 24px;
+  margin-bottom: 50px;
 `
 
 export const RowSection = styled.View`

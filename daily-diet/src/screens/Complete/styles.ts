@@ -7,7 +7,7 @@ interface ISuccessProps {
 export const Container = styled.View`
   flex: 1;
   width: 100%;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
   padding: 24px 32px;
   align-items: center;
   justify-content: center;

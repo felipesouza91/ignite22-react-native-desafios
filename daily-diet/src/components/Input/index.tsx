@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextInputProps } from 'react-native'
 import { Container, Label, InputText } from './styles'
 interface IInputProps extends TextInputProps {
@@ -12,10 +12,19 @@ const Input: React.FC<IInputProps> = ({
   textAlignVertical,
   ...rest
 }) => {
+  const [isFocused, setIsFocused] = useState(false)
   return (
     <Container>
       {label && <Label>{label}</Label>}
-      <InputText isTestArea={isTestArea} {...rest} />
+      <InputText
+        isTestArea={isTestArea}
+        isFocused={isFocused}
+        {...rest}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => {
+          setIsFocused(false)
+        }}
+      />
     </Container>
   )
 }
