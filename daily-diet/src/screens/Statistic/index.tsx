@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { BoxStatistic } from './components/BoxStatistic'
 import {
   Container,
@@ -11,13 +11,29 @@ import {
   Button,
   ArrowLeftIcon,
 } from './styles'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { getStatistics, IStaticsData } from '@utils/meals/repository'
+
 const Statistic: React.FC = () => {
-  const percenter = 50
   const navigate = useNavigation()
+  const [statistics, setStatistics] = useState<IStaticsData>()
   function handleNavigate() {
     navigate.navigate('Home')
   }
+
+  const loadData = useCallback(() => {
+    getStatistics().then((data) => setStatistics(data))
+  }, [])
+
+  useFocusEffect(loadData)
+
+  if (!statistics) {
+    return null
+  }
+  const percenter = Number(
+    ((statistics.foodsHealthy / statistics.totalFoods) * 100).toPrecision(2),
+  )
+
   return (
     <Container isDanger={percenter < 40}>
       <TitleContainer>
@@ -31,13 +47,13 @@ const Statistic: React.FC = () => {
         <Title>Estatísticas gerais</Title>
         <BoxStatistic
           data={{
-            value: 22,
+            value: statistics.sequenceFoodsHealthy,
             subTitle: 'melhor sequência de pratos dentro da dieta',
           }}
         />
         <BoxStatistic
           data={{
-            value: 109,
+            value: statistics.totalFoods,
             subTitle: 'refeições registradas',
           }}
         />
@@ -45,7 +61,7 @@ const Statistic: React.FC = () => {
           <BoxStatistic
             isHalf
             data={{
-              value: 100,
+              value: statistics.foodsHealthy,
               subTitle: 'refeições dentro da dieta',
               type: 'success',
             }}
@@ -53,7 +69,7 @@ const Statistic: React.FC = () => {
           <BoxStatistic
             isHalf
             data={{
-              value: 10,
+              value: statistics.foodsUnHealthy,
               subTitle: 'refeições fora da dieta',
               type: 'danger',
             }}
