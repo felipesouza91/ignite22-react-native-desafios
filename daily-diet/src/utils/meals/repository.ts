@@ -116,27 +116,30 @@ async function persistStorage(list: IFoodData[]) {
 
 export async function getStatistics() {
   const data = await loadStorageData()
+  let sequenceFoodsHealthyCount = 0
   const result: IStaticsData = {
     foodsHealthy: 0,
     foodsUnHealthy: 0,
     totalFoods: 0,
     sequenceFoodsHealthy: 0,
   }
-  let lastUnHealthy = -1
+
   data.reduce((previous, item, currentIndex) => {
     if (item.isHealthy) {
       result.foodsHealthy = ++result.foodsHealthy
     } else {
       result.foodsUnHealthy = ++result.foodsUnHealthy
     }
-    if (previous.isHealthy && item.isHealthy && lastUnHealthy > -1) {
-      result.sequenceFoodsHealthy = ++result.sequenceFoodsHealthy
+    if (item.isHealthy && previous.isHealthy === item.isHealthy) {
+      sequenceFoodsHealthyCount++
+      if (sequenceFoodsHealthyCount > result.sequenceFoodsHealthy) {
+        result.sequenceFoodsHealthy = sequenceFoodsHealthyCount
+      }
     } else {
-      lastUnHealthy = currentIndex
+      sequenceFoodsHealthyCount = 0
     }
     result.totalFoods = ++result.totalFoods
     return item
   }, data[0])
-  console.log(result)
-  return result
+  return { ...result }
 }
