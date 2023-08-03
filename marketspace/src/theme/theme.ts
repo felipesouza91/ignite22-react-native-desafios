@@ -1,6 +1,36 @@
 import { extendTheme } from 'native-base'
 
 const appTheme = extendTheme({
+  components: {
+    Button: {
+      baseStyle: {
+        borderRadius: 'md',
+        w: 'full',
+        h: 45,
+        color: '#F7F7F8',
+      },
+      variants: {
+        black: ({ colorScheme }) => {
+          return {
+            bg: `#1A181B`,
+            _pressed: { bg: 'base.gray-6' },
+          }
+        },
+        blue: ({ colorScheme }) => {
+          return {
+            bg: `#647AC7`,
+            _pressed: { bg: 'product.blue' },
+          }
+        },
+        gray: ({ colorScheme }) => {
+          return {
+            bg: `base.gray-5`,
+            _pressed: { bg: 'base.gray-4' },
+          }
+        },
+      },
+    },
+  },
   colors: {
     product: {
       blue: '#364D9D',
@@ -18,7 +48,7 @@ const appTheme = extendTheme({
     },
   },
   lineHeights: {
-    app: '130%',
+    app: '1.3',
   },
   fontConfig: {
     Karla: {
