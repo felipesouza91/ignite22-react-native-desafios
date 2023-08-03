@@ -13,7 +13,7 @@ const appTheme = extendTheme({
         black: ({ colorScheme }) => {
           return {
             bg: `#1A181B`,
-            _pressed: { bg: 'base.gray-6' },
+            _pressed: { bg: 'base.gray-2' },
           }
         },
         blue: ({ colorScheme }) => {

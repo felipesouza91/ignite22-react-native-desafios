@@ -6,14 +6,10 @@ import Input from '../components/Input'
 const SignIn: React.FC = () => {
   return (
     <ScrollView
-      bg="base.gray-7"
-      flex={1}
-      h="full"
-      minHeight="full"
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <VStack flex={1}>
+      <VStack flex={1} bg="base.gray-7">
         <Center
           bg="base.gray-6"
           borderBottomRadius={32}
