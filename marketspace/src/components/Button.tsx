@@ -12,7 +12,7 @@ interface IButtonProps extends INativeButtonProps {
 
 const Button: React.FC<IButtonProps> = ({ type = 'black', title, ...rest }) => {
   return (
-    <NativeButton variant={type} {...rest}>
+    <NativeButton px="3" variant={type} {...rest}>
       <Text
         color={type === 'gray' ? 'base.gray-2' : 'base.gray-7'}
         fontFamily="heading"

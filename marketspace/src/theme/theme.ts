@@ -5,7 +5,6 @@ const appTheme = extendTheme({
     Button: {
       baseStyle: {
         borderRadius: 'md',
-        w: 'full',
         h: 45,
         color: '#F7F7F8',
       },
