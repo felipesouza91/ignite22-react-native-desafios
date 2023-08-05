@@ -15,15 +15,26 @@ import {
   Sliders,
   Tag,
 } from 'phosphor-react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Avatar } from '../components/Avatar'
 import Button from '../components/Button'
+import { FilterModal } from '../components/FilterModal'
 import Input from '../components/Input'
 import { ProductTile } from '../components/ProductTile'
 
 const listTest = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 const Home: React.FC = () => {
+  const [showFilterModal, setShowFilterModal] = useState(false)
+
+  function handleShowFilterModal() {
+    setShowFilterModal(true)
+  }
+
+  function handleCloseFilterModal() {
+    setShowFilterModal(false)
+  }
+
   return (
     <VStack flex={1} bg="base.gray-6" px="6">
       <HStack mt="12" justifyContent="space-between" flexWrap="wrap">
@@ -88,6 +99,7 @@ const Home: React.FC = () => {
               />
               <Divider bg="base.gray-3" thickness="1" orientation="vertical" />
               <IconButton
+                onPress={handleShowFilterModal}
                 icon={<Icon as={<Sliders weight="bold" />} size={20} />}
               />
             </HStack>
@@ -108,6 +120,10 @@ const Home: React.FC = () => {
           justifyContent: 'space-between',
         }}
         ItemSeparatorComponent={() => <View h="6" />}
+      />
+      <FilterModal
+        isVisible={showFilterModal}
+        onClose={handleCloseFilterModal}
       />
     </VStack>
   )
