@@ -32,6 +32,7 @@ const Home: React.FC = () => {
   }
 
   function handleCloseFilterModal() {
+    console.log('Teste')
     setShowFilterModal(false)
   }
 

@@ -5,9 +5,14 @@ import React from 'react'
 interface ITagButtonProps {
   title: string
   isSelected?: boolean
+  onPress?: () => void
 }
 
-const TagButton: React.FC<ITagButtonProps> = ({ title, isSelected }) => {
+const TagButton: React.FC<ITagButtonProps> = ({
+  title,
+  isSelected,
+  onPress,
+}) => {
   return (
     <Pressable
       display="flex"
@@ -19,6 +24,7 @@ const TagButton: React.FC<ITagButtonProps> = ({ title, isSelected }) => {
       bg={isSelected ? 'product.blue-light' : 'base.gray-5'}
       rounded="full"
       flexDirection="row"
+      onPress={onPress}
     >
       <Text
         fontFamily="heading"

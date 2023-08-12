@@ -9,7 +9,7 @@ import {
   VStack,
 } from 'native-base'
 import { X } from 'phosphor-react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { TagButton } from './TagButton'
 
 const paymentTypes = [
@@ -26,10 +26,17 @@ interface IFilterModal {
 }
 
 const FilterModal: React.FC<IFilterModal> = ({ isVisible, onClose }) => {
+  const [selectedCondition, setSelectedCondition] = useState<
+    'new' | 'used' | ''
+  >('')
+
+  function handleChangeSelectedCondition(condition: 'new' | 'used') {
+    setSelectedCondition(condition)
+  }
+
   return (
     <Modal
       isOpen={isVisible}
-      onClose={onClose}
       avoidKeyboard
       justifyContent="flex-end"
       size="full"
@@ -39,15 +46,23 @@ const FilterModal: React.FC<IFilterModal> = ({ isVisible, onClose }) => {
           <VStack px="6">
             <HStack justifyContent="space-between" alignItems="center">
               <Heading color="base.gray-1">Filtrar anúncios</Heading>
-              <IconButton icon={<Icon as={X} size={24} />} />
+              <IconButton icon={<Icon as={X} size={24} />} onPress={onClose} />
             </HStack>
             <VStack mt="6">
               <Heading color="base.gray-2" fontSize="sm">
                 Condição
               </Heading>
               <HStack mt="3">
-                <TagButton title="Novo" isSelected />
-                <TagButton title="Usado" />
+                <TagButton
+                  title="Novo"
+                  isSelected={selectedCondition === 'new'}
+                  onPress={() => handleChangeSelectedCondition('new')}
+                />
+                <TagButton
+                  title="Usado"
+                  isSelected={selectedCondition === 'used'}
+                  onPress={() => handleChangeSelectedCondition('used')}
+                />
               </HStack>
             </VStack>
             <VStack mt="6">
