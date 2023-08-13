@@ -40,7 +40,11 @@ const paymentTypes = [
   },
 ]
 
-const Product: React.FC = () => {
+interface IProductProps {
+  advertisement?: number
+}
+
+const Product: React.FC<IProductProps> = ({ advertisement }) => {
   const width = Dimensions.get('window').width
   return (
     <VStack flex={1} bg="base.gray-7">
@@ -120,39 +124,41 @@ const Product: React.FC = () => {
             </Text>
             <Text> Sim</Text>
           </HStack>
-          <Text mt="4" fontWeight="bold">
+          <Text mt="4" fontWeight="bold" mb="2">
             Meios de pagamento:
           </Text>
-          <FlatList
-            mt="2"
-            keyExtractor={(item) => item.title}
-            data={paymentTypes}
-            renderItem={({ item }) => (
-              <HStack alignItems="center">
-                <Icon as={item.icon} size={18} />
-                <Text ml="2" color="base.gray-2" fontSize="sm">
-                  {item.title}
-                </Text>
-              </HStack>
-            )}
-            ItemSeparatorComponent={() => <View h="2" />}
-          />
+          {paymentTypes.map((item) => (
+            <HStack alignItems="center" key={item.title} mt="1">
+              <Icon as={item.icon} size={18} />
+              <Text ml="2" color="base.gray-2" fontSize="sm">
+                {item.title}
+              </Text>
+            </HStack>
+          ))}
+          {!!advertisement && (
+            <VStack mt="8" mb="2">
+              <Button title="Desativar anúncio" mb="2" />
+              <Button title="Excluir anúncio" type="gray" />
+            </VStack>
+          )}
         </VStack>
       </ScrollView>
-      <HStack
-        px="6"
-        h="20"
-        alignContent="center"
-        alignItems="center"
-        bg="base.gray-7"
-        justifyContent="space-between"
-      >
-        <HStack alignItems="flex-end">
-          <Text>R$</Text>
-          <Heading>120,00</Heading>
+      {!advertisement && (
+        <HStack
+          px="6"
+          h="20"
+          alignContent="center"
+          alignItems="center"
+          bg="base.gray-7"
+          justifyContent="space-between"
+        >
+          <HStack alignItems="flex-end">
+            <Text>R$</Text>
+            <Heading>120,00</Heading>
+          </HStack>
+          <Button title="Entrar em contato" type="blue" />
         </HStack>
-        <Button title="Entrar em contato" type="blue" />
-      </HStack>
+      )}
     </VStack>
   )
 }
