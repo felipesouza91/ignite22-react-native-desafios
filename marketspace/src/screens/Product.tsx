@@ -10,7 +10,7 @@ import {
   View,
 } from 'native-base'
 import { Bank, Barcode, CreditCard, Money, QrCode } from 'phosphor-react-native'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Dimensions } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import { Avatar } from '../components/Avatar'
@@ -44,34 +44,82 @@ interface IProductProps {
   advertisement?: number
 }
 
+interface IAppFlatList {
+  scrollToIndex: ({ animated, index, viewPosition }) => void
+}
+
 const Product: React.FC<IProductProps> = ({ advertisement }) => {
   const width = Dimensions.get('window').width
+  const disabled = false
+  const [currentItem, setCurrentItem] = useState(0)
+  const listRef = useRef<IAppFlatList>()
   return (
     <VStack flex={1} bg="base.gray-7">
       <Header showBeforeIcon="new" showBack />
       <View>
-        <Carousel
-          loop
-          width={width}
-          height={280}
-          data={[...new Array(6).keys()]}
-          renderItem={() => (
-            <Image
-              source={{ uri: 'https://github.com/felipesouza91.png' }}
-              alt=""
-              width={width}
-              height={280}
-            />
-          )}
-        />
-        <FlatList
-          position="absolute"
-          bottom="2px"
-          horizontal
-          data={[...new Array(6).keys()]}
-          renderItem={() => <View w="131px" h="3px" bg="base.gray-7" />}
-          ItemSeparatorComponent={() => <View w="4px" bg="transparent" />}
-        />
+        <View
+          opacity={disabled ? 0.4 : 1}
+          bgColor={disabled ? 'base.gray-1' : 'transparent'}
+        >
+          <Carousel
+            enabled={!disabled}
+            loop
+            width={width}
+            height={280}
+            onSnapToItem={(index) => {
+              setCurrentItem(index)
+              listRef.current.scrollToIndex({
+                animated: true,
+                index,
+                viewPosition: 1,
+              })
+            }}
+            data={[...new Array(6).keys()]}
+            renderItem={() => (
+              <Image
+                source={{ uri: 'https://github.com/felipesouza91.png' }}
+                alt=""
+                width={width}
+                height={280}
+              />
+            )}
+          />
+          <FlatList
+            ref={listRef}
+            position="absolute"
+            showsHorizontalScrollIndicator={false}
+            bottom="2px"
+            horizontal
+            data={[...new Array(6).keys()]}
+            renderItem={(item) => (
+              <View
+                w="131px"
+                h="3px"
+                bg="base.gray-7"
+                opacity={item.index === currentItem ? 0.75 : 0.5}
+              />
+            )}
+            ItemSeparatorComponent={() => <View w="4px" bg="transparent" />}
+            onMomentumScrollEnd={(event) => {
+              const sliderIndex = event.nativeEvent.contentOffset.x
+                ? event.nativeEvent.contentOffset.x / width
+                : 0
+              console.log(sliderIndex)
+            }}
+          />
+          {/* */}
+        </View>
+        {disabled && (
+          <Heading
+            color="base.gray-7"
+            bottom={280 / 2}
+            left={width / 2 - 65}
+            position="absolute"
+            fontSize="sm"
+          >
+            Anúncio desativado
+          </Heading>
+        )}
       </View>
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
