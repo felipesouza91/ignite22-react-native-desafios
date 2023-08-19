@@ -41,21 +41,25 @@ const paymentTypes = [
 ]
 
 interface IProductProps {
-  advertisement?: number
+  advertisement: number
+  isEditable?: boolean
 }
 
 interface IAppFlatList {
   scrollToIndex: ({ animated, index, viewPosition }) => void
 }
 
-const Product: React.FC<IProductProps> = ({ advertisement }) => {
+const Product: React.FC<IProductProps> = ({
+  advertisement,
+  isEditable = false,
+}) => {
   const width = Dimensions.get('window').width
   const disabled = false
   const [currentItem, setCurrentItem] = useState(0)
   const listRef = useRef<IAppFlatList>()
   return (
-    <VStack flex={1} bg="base.gray-7">
-      <Header showBeforeIcon="new" showBack />
+    <VStack flex={1} bg="base.gray-6">
+      <Header showBeforeIcon={isEditable ? 'edit' : null} showBack />
       <View>
         <View
           opacity={disabled ? 0.4 : 1}
@@ -117,12 +121,12 @@ const Product: React.FC<IProductProps> = ({ advertisement }) => {
             position="absolute"
             fontSize="sm"
           >
-            Anúncio desativado
+            {'Anúncio desativado'.toUpperCase()}
           </Heading>
         )}
       </View>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
         showsVerticalScrollIndicator={false}
       >
         <VStack mt="5" mx="6">
@@ -183,15 +187,19 @@ const Product: React.FC<IProductProps> = ({ advertisement }) => {
               </Text>
             </HStack>
           ))}
-          {!!advertisement && (
+          {isEditable && (
             <VStack mt="8" mb="2">
-              <Button title="Desativar anúncio" mb="2" />
+              {!disabled ? (
+                <Button title="Desativar anúncio" mb="2" />
+              ) : (
+                <Button title="Reativar anúncio" mb="2" type="blue" />
+              )}
               <Button title="Excluir anúncio" type="gray" />
             </VStack>
           )}
         </VStack>
       </ScrollView>
-      {!advertisement && (
+      {!isEditable && (
         <HStack
           px="6"
           h="20"

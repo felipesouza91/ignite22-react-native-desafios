@@ -5,7 +5,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/karla'
 import { NativeBaseProvider } from 'native-base'
-import { Product } from './src/screens/Product'
+import { NewAdvertisement } from './src/screens/NewAdvertisement'
 import { appTheme } from './src/theme/theme'
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={appTheme}>
-      <Product />
+      <NewAdvertisement />
     </NativeBaseProvider>
   )
 }

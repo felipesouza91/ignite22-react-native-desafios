@@ -14,7 +14,7 @@ const Header: React.FC<IHeaderProps> = ({
   return (
     <HStack mt="7" px="6" justifyContent="space-between" alignItems="center">
       {showBack ? (
-        <IconButton icon={<ArrowLeft size={24} color="#1A181B" />} />
+        <IconButton icon={<ArrowLeft size={22} color="#1A181B" />} />
       ) : (
         <View />
       )}
