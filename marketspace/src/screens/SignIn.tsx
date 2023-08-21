@@ -9,28 +9,22 @@ const SignIn: React.FC = () => {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <VStack flex={1} bg="base.gray-7">
+      <VStack flex={1} bg="gray.700">
         <Center
-          bg="base.gray-6"
+          bg="gray.600"
           borderBottomRadius={32}
           borderBottomLeftRadius={32}
           px="12"
           py="20"
         >
           <Image source={logo} alt="Logo" h="16" w="24" mt="4" />
-          <Heading color="base.gray-1" fontSize="4xl">
+          <Heading color="gray.100" fontSize="4xl">
             marketspace
           </Heading>
-          <Text fontSize="sm" color="base.gray-3" lineHeight="md">
+          <Text fontSize="sm" color="gray.300" lineHeight="md">
             Seu espaço de compra e venda
           </Text>
-          <Text
-            fontSize="sm"
-            color="base.gray-2"
-            lineHeight="md"
-            mt="77"
-            mb="4"
-          >
+          <Text fontSize="sm" color="gray.200" lineHeight="md" mt="77" mb="4">
             Acesse sua conta
           </Text>
           <Input placeholder="E-mail" mb="4" />
@@ -46,7 +40,7 @@ const SignIn: React.FC = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Text fontSize="sm" color="base.gray-2" lineHeight="md" mb="4">
+          <Text fontSize="sm" color="gray.200" lineHeight="md" mb="4">
             Ainda não tem acesso?
           </Text>
           <Button title="Entrar" type="gray" />

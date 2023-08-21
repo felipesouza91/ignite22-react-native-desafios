@@ -8,6 +8,7 @@ import {
   Text,
   VStack,
   View,
+  useTheme,
 } from 'native-base'
 import {
   Bank,
@@ -62,17 +63,18 @@ const Product: React.FC<IProductProps> = ({
   advertisement,
   isEditable = false,
 }) => {
+  const theme = useTheme()
   const width = Dimensions.get('window').width
   const disabled = false
   const [currentItem, setCurrentItem] = useState(0)
   const listRef = useRef<IAppFlatList>()
   return (
-    <VStack flex={1} bg="base.gray-6">
+    <VStack flex={1} bg="gray.600">
       <Header showBeforeIcon={isEditable ? 'edit' : null} showBack />
       <View mt="2">
         <View
           opacity={disabled ? 0.4 : 1}
-          bgColor={disabled ? 'base.gray-1' : 'transparent'}
+          bgColor={disabled ? 'gray.100' : 'transparent'}
         >
           <Carousel
             enabled={!disabled}
@@ -108,7 +110,7 @@ const Product: React.FC<IProductProps> = ({
               <View
                 w="131px"
                 h="3px"
-                bg="base.gray-7"
+                bg="gray.700"
                 opacity={item.index === currentItem ? 0.75 : 0.5}
               />
             )}
@@ -124,7 +126,7 @@ const Product: React.FC<IProductProps> = ({
         </View>
         {disabled && (
           <Heading
-            color="base.gray-7"
+            color="gray.700"
             bottom={280 / 2}
             left={width / 2 - 65}
             position="absolute"
@@ -145,7 +147,7 @@ const Product: React.FC<IProductProps> = ({
               h="6"
               source={{ uri: 'https://github.com/felipesouza91.png' }}
               rounded="full"
-              borderColor="product.blue-light"
+              borderColor="blue.100"
               borderWidth="2"
               mr="2"
               alt=""
@@ -156,24 +158,29 @@ const Product: React.FC<IProductProps> = ({
             mt="26px"
             py="2px"
             px="2"
-            bg="base.gray-5"
+            bg="gray.500"
             rounded="full"
             w="16"
             alignItems="center"
           >
-            <Text color="base.gray-2" fontSize="2xs">
+            <Text color="gray.200" fontSize="2xs">
               NOVO
             </Text>
           </View>
           <HStack mt="10px" alignItems="center" justifyContent="space-between">
-            <Heading lineHeight="xl" fontSize="xl" letterSpacing="lg">
+            <Heading
+              color="gray.100"
+              lineHeight="xl"
+              fontSize="xl"
+              letterSpacing="lg"
+            >
               Bicileta
             </Heading>
-            <Heading lineHeight="xl" fontSize="xl" color="product.blue-light">
+            <Heading lineHeight="xl" fontSize="xl" color="blue.100">
               R$ 130,00
             </Heading>
           </HStack>
-          <Text color="base.gray-2" fontSize="sm">
+          <Text color="gray.200" fontSize="sm">
             Cras congue cursus in tortor sagittis placerat nunc, tellus arcu.
             Vitae ante leo eget maecenas urna mattis cursus. Mauris metus amet
             nibh mauris mauris accumsan, euismod. Aenean leo nunc, purus iaculis
@@ -191,7 +198,7 @@ const Product: React.FC<IProductProps> = ({
           {paymentTypes.map((item) => (
             <HStack alignItems="center" key={item.title} mt="1">
               <Icon as={item.icon} size={18} />
-              <Text ml="2" color="base.gray-2" fontSize="sm">
+              <Text ml="2" color="gray.200" fontSize="sm">
                 {item.title}
               </Text>
             </HStack>
@@ -200,20 +207,22 @@ const Product: React.FC<IProductProps> = ({
             <VStack mt="8" mb="2">
               {!disabled ? (
                 <Button
-                  leftIcon={<Power size={16} color="#EDECEE" />}
+                  leftIcon={<Power size={16} color={theme.colors.gray[600]} />}
                   title="Desativar anúncio"
                   mb="2"
                 />
               ) : (
                 <Button
-                  leftIcon={<Power size={16} color="#EDECEE" />}
+                  leftIcon={<Power size={16} color={theme.colors.gray[600]} />}
                   title="Reativar anúncio"
                   mb="2"
                   type="blue"
                 />
               )}
               <Button
-                leftIcon={<TrashSimple size={16} color="#5F5B62" />}
+                leftIcon={
+                  <TrashSimple size={16} color={theme.colors.gray[300]} />
+                }
                 title="Excluir anúncio"
                 type="gray"
               />
@@ -227,17 +236,23 @@ const Product: React.FC<IProductProps> = ({
           h="20"
           alignContent="center"
           alignItems="center"
-          bg="base.gray-7"
+          bg="gray.700"
           justifyContent="space-between"
         >
           <HStack alignItems="flex-end">
-            <Text fontWeight="bold" color="product.blue">
+            <Text fontWeight="bold" color="blue.500">
               R$
             </Text>
-            <Heading color="product.blue">120,00</Heading>
+            <Heading color="blue.500">120,00</Heading>
           </HStack>
           <Button
-            leftIcon={<WhatsappLogo size={16} color="#EDECEE" weight="fill" />}
+            leftIcon={
+              <WhatsappLogo
+                size={16}
+                color={theme.colors.gray[600]}
+                weight="fill"
+              />
+            }
             title="Entrar em contato"
             type="blue"
           />

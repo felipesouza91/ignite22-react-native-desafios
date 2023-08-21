@@ -11,15 +11,15 @@ const Input: React.FC<IInputProps> = ({ ...rest }) => {
     <NativeInput
       w="full"
       borderRadius="sm"
-      bgColor="base.gray-7"
+      bgColor="gray.700"
       py="3"
       px="4"
-      color="base.gray-2"
+      color="gray.200"
       lineHeight="sm"
       fontSize="md"
       borderWidth="0"
       fontFamily="mono"
-      _focus={{ borderWidth: '1', borderColor: 'base.gray-3' }}
+      _focus={{ borderWidth: '1', borderColor: 'gray.300' }}
       {...rest}
     />
   )

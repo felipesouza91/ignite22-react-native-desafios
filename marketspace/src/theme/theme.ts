@@ -6,25 +6,25 @@ const appTheme = extendTheme({
       baseStyle: {
         borderRadius: 'md',
         h: 45,
-        color: '#F7F7F8',
+        color: 'gray.700',
       },
       variants: {
         black: ({ colorScheme }) => {
           return {
-            bg: `#1A181B`,
-            _pressed: { bg: 'base.gray-2' },
+            bg: `gray.100`,
+            _pressed: { bg: 'gray.200' },
           }
         },
         blue: ({ colorScheme }) => {
           return {
-            bg: `#647AC7`,
-            _pressed: { bg: 'product.blue' },
+            bg: `blue.100`,
+            _pressed: { bg: 'blue.500' },
           }
         },
         gray: ({ colorScheme }) => {
           return {
-            bg: `base.gray-5`,
-            _pressed: { bg: 'base.gray-4' },
+            bg: `gray.500`,
+            _pressed: { bg: 'gray.400' },
           }
         },
       },
@@ -32,18 +32,25 @@ const appTheme = extendTheme({
   },
   colors: {
     product: {
-      blue: '#364D9D',
-      'blue-light': '#647AC7',
-      'red-light': '#EE7979',
+      blue: '',
+      'blue-light': '',
+      'red-light': '',
     },
-    base: {
-      'gray-1': '#1A181B',
-      'gray-2': '#3E3A40',
-      'gray-3': '#5F5B62',
-      'gray-4': '#9F9BA1',
-      'gray-5': '#D9D8DA',
-      'gray-6': '#EDECEE',
-      'gray-7': '#F7F7F8',
+    blue: {
+      100: '#647AC7',
+      500: '#364D9D',
+    },
+    red: {
+      200: '#EE7979',
+    },
+    gray: {
+      100: '#1A181B',
+      200: '#3E3A40',
+      300: '#5F5B62',
+      400: '#9F9BA1',
+      500: '#D9D8DA',
+      600: '#EDECEE',
+      700: '#F7F7F8',
     },
   },
   lineHeights: {

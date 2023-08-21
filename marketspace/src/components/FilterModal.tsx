@@ -45,11 +45,11 @@ const FilterModal: React.FC<IFilterModal> = ({ isVisible, onClose }) => {
         <Modal.Body>
           <VStack px="6">
             <HStack justifyContent="space-between" alignItems="center">
-              <Heading color="base.gray-1">Filtrar anúncios</Heading>
+              <Heading color="gray.100">Filtrar anúncios</Heading>
               <IconButton icon={<Icon as={X} size={24} />} onPress={onClose} />
             </HStack>
             <VStack mt="6">
-              <Heading color="base.gray-2" fontSize="sm">
+              <Heading color="gray.200" fontSize="sm">
                 Condição
               </Heading>
               <HStack mt="3">
@@ -66,34 +66,34 @@ const FilterModal: React.FC<IFilterModal> = ({ isVisible, onClose }) => {
               </HStack>
             </VStack>
             <VStack mt="6">
-              <Heading color="base.gray-2" fontSize="sm">
+              <Heading color="gray.200" fontSize="sm">
                 Aceita troca?
               </Heading>
               <Switch
                 mt="3"
                 size="lg"
                 alignSelf="flex-start"
-                offTrackColor="base.gray-5"
-                onThumbColor="base.gray-7"
-                onTrackColor="product.blue-light"
+                offTrackColor="gray.500"
+                onThumbColor="gray.700"
+                onTrackColor="blue.100"
               />
             </VStack>
             <VStack mt="6">
-              <Heading color="base.gray-2" fontSize="sm">
+              <Heading color="gray.200" fontSize="sm">
                 Meios de pagamento aceitos
               </Heading>
               <Checkbox.Group mt="3">
                 {paymentTypes.map((payment) => (
                   <Checkbox
                     key={payment}
-                    color="product.blue-light"
+                    color="blue.100"
                     size="sm"
                     value={payment}
                     mt="2"
                     fontSize="md"
                     _checked={{
-                      bg: 'product.blue-light',
-                      borderColor: 'product.blue-light',
+                      bg: 'blue.100',
+                      borderColor: 'blue.100',
                     }}
                   >
                     {payment}

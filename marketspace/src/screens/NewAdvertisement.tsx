@@ -12,6 +12,7 @@ import {
   Text,
   VStack,
   View,
+  useTheme,
 } from 'native-base'
 import { Plus, X } from 'phosphor-react-native'
 import React from 'react'
@@ -31,8 +32,9 @@ const paymentTypes = [
 const images = []
 
 const NewAdvertisement: React.FC = () => {
+  const theme = useTheme()
   return (
-    <VStack flex={1} mt="6" bg="base.gray-6">
+    <VStack flex={1} mt="6" bg="gray.600">
       <Header title="Criar anúncio" showBack />
       <ScrollView
         contentContainerStyle={{
@@ -43,10 +45,10 @@ const NewAdvertisement: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <VStack mt="5">
-          <Heading fontSize="md" mb="1" color="base.gray-2">
+          <Heading fontSize="md" mb="1" color="gray.200">
             Imagens
           </Heading>
-          <Text fontSize="md" color="base.gray-3">
+          <Text fontSize="md" color="gray.300">
             Escolha até 3 imagens para mostrar o quando o seu produto é
             incrível!
           </Text>
@@ -57,8 +59,8 @@ const NewAdvertisement: React.FC = () => {
             keyExtractor={(item) => item}
             ListFooterComponent={
               <Pressable>
-                <Center w="100px" h="100px" bg="base.gray-5" rounded="lg">
-                  <Plus color="#9F9BA1" size={24} />
+                <Center w="100px" h="100px" bg="gray.500" rounded="lg">
+                  <Plus color={theme.colors.gray[400]} size={24} />
                 </Center>
               </Pressable>
             }
@@ -76,16 +78,16 @@ const NewAdvertisement: React.FC = () => {
                   w="16px"
                   h="16px"
                   rounded="full"
-                  bg="base.gray-2"
+                  bg="gray.200"
                   right="1"
                   top="1"
                 >
-                  <X size={12} color="#F7F7F8" />
+                  <X size={12} color={theme.colors.gray[700]} />
                 </Center>
               </Pressable>
             )}
           />
-          <Heading fontSize="md" mb="1" mt="8" color="base.gray-2">
+          <Heading fontSize="md" mb="1" mt="8" color="gray.200">
             Sobre o produto
           </Heading>
           <Input placeholder="Título do anúncio" mt="4" />
@@ -101,12 +103,12 @@ const NewAdvertisement: React.FC = () => {
               <Radio value="used">Produto usado</Radio>
             </HStack>
           </Radio.Group>
-          <Heading fontSize="md" mb="1" mt="8" color="base.gray-2">
+          <Heading fontSize="md" mb="1" mt="8" color="gray.200">
             Venda
           </Heading>
           <Input
             InputLeftElement={
-              <Text ml="4" fontSize="md" color="base.gray-1">
+              <Text ml="4" fontSize="md" color="gray.100">
                 R$
               </Text>
             }
@@ -114,31 +116,31 @@ const NewAdvertisement: React.FC = () => {
             keyboardType="numeric"
             mt="4"
           />
-          <Heading fontSize="md" mb="1" mt="4" color="base.gray-2">
+          <Heading fontSize="md" mb="1" mt="4" color="gray.200">
             Aceita troca?
           </Heading>
           <Switch
             alignSelf="flex-start"
             size="lg"
-            offTrackColor="base.gray-5"
-            onThumbColor="base.gray-7"
-            onTrackColor="product.blue-light"
+            offTrackColor="gray.500"
+            onThumbColor="gray.700"
+            onTrackColor="blue.100"
           />
-          <Heading color="base.gray-2" fontSize="md" mt="4">
+          <Heading color="gray.200" fontSize="md" mt="4">
             Meios de pagamento aceitos
           </Heading>
           <Checkbox.Group mt="3">
             {paymentTypes.map((payment) => (
               <Checkbox
                 key={payment}
-                color="product.blue-light"
+                color="blue.100"
                 size="sm"
                 value={payment}
                 mt="2"
                 fontSize="md"
                 _checked={{
-                  bg: 'product.blue-light',
-                  borderColor: 'product.blue-light',
+                  bg: 'blue.100',
+                  borderColor: 'blue.100',
                 }}
               >
                 {payment}
@@ -150,7 +152,7 @@ const NewAdvertisement: React.FC = () => {
       <HStack
         py="5"
         px="6"
-        bg="base.gray-7"
+        bg="gray.700"
         justifyContent="space-between"
         flexWrap="no-wrap"
       >

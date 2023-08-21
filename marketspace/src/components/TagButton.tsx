@@ -21,14 +21,14 @@ const TagButton: React.FC<ITagButtonProps> = ({
       alignItems="center"
       justifyContent="center"
       mr="3"
-      bg={isSelected ? 'product.blue-light' : 'base.gray-5'}
+      bg={isSelected ? 'blue.100' : 'gray.500'}
       rounded="full"
       flexDirection="row"
       onPress={onPress}
     >
       <Text
         fontFamily="heading"
-        color={isSelected ? 'white' : 'base.gray-3'}
+        color={isSelected ? 'white' : 'gray.300'}
         mr="6px"
       >
         {title.toUpperCase()}

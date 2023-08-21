@@ -7,7 +7,7 @@ const listTest = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 const Advertisements: React.FC = () => {
   return (
-    <VStack flex={1} mt="6" bg="base.gray-7">
+    <VStack flex={1} mt="6" bg="gray.700">
       <Header title="Meus anúncios" showBeforeIcon="new" />
       <VStack px="6" mt="9" flex={1}>
         <HStack justifyContent="space-between" alignItems="center">

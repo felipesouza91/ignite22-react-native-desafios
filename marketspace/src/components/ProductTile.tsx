@@ -14,7 +14,7 @@ const ProductTile: React.FC<IProductTileProps> = ({
   return (
     <VStack w="150px">
       <View position="relative">
-        <View bg="base.gray-1" opacity={isDisabled ? 0.4 : 1} rounded="sm">
+        <View bg="gray.100" opacity={isDisabled ? 0.4 : 1} rounded="sm">
           <Image
             source={{ uri: 'https://github.com/felipesouza91.png' }}
             h="100px"
@@ -38,7 +38,7 @@ const ProductTile: React.FC<IProductTileProps> = ({
             position="absolute"
             right="1"
             top="1"
-            bgColor={isNew ? 'product.blue' : 'base.gray-2'}
+            bgColor={isNew ? 'blue.500' : 'gray.200'}
             rounded="full"
           >
             <Heading fontSize="2xs" color="white">
@@ -60,16 +60,10 @@ const ProductTile: React.FC<IProductTileProps> = ({
         )}
       </View>
 
-      <Text
-        mt="1"
-        fontSize="md"
-        color={isDisabled ? 'base.gray-4' : 'base.gray-2'}
-      >
+      <Text mt="1" fontSize="md" color={isDisabled ? 'gray.400' : 'gray.200'}>
         Tênis vermelho
       </Text>
-      <Heading color={isDisabled ? 'base.gray-4' : 'base.gray-1'}>
-        R$ 99,90
-      </Heading>
+      <Heading color={isDisabled ? 'gray.400' : 'gray.100'}>R$ 99,90</Heading>
     </VStack>
   )
 }

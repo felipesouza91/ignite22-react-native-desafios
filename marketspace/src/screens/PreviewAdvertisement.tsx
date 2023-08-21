@@ -9,6 +9,7 @@ import {
   Text,
   VStack,
   View,
+  useTheme,
 } from 'native-base'
 import {
   ArrowLeft,
@@ -61,16 +62,17 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
   advertisement,
   isEditable = false,
 }) => {
+  const theme = useTheme()
   const width = Dimensions.get('window').width
   const [currentItem, setCurrentItem] = useState(0)
   const listRef = useRef<IAppFlatList>()
   return (
-    <VStack flex={1} bg="base.gray-6">
-      <Center bg="product.blue-light" h="121px">
-        <Heading fontSize="md" color="base.gray-7" mt="9">
+    <VStack flex={1} bg="gray.600">
+      <Center bg="blue.100" h="121px">
+        <Heading fontSize="md" color="gray.700" mt="9">
           Pré visualização do anúncio
         </Heading>
-        <Text fontSize="sm" color="base.gray-7">
+        <Text fontSize="sm" color="gray.700">
           É assim que seu produto vai aparecer!
         </Text>
       </Center>
@@ -109,7 +111,7 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
               <View
                 w="131px"
                 h="3px"
-                bg="base.gray-7"
+                bg="gray.700"
                 opacity={item.index === currentItem ? 0.75 : 0.5}
               />
             )}
@@ -134,7 +136,7 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
               h="6"
               source={{ uri: 'https://github.com/felipesouza91.png' }}
               rounded="full"
-              borderColor="product.blue-light"
+              borderColor="blue.100"
               borderWidth="2"
               mr="2"
               alt=""
@@ -145,12 +147,12 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
             mt="26px"
             py="2px"
             px="2"
-            bg="base.gray-5"
+            bg="gray.500"
             rounded="full"
             w="16"
             alignItems="center"
           >
-            <Text color="base.gray-2" fontSize="2xs">
+            <Text color="gray.200" fontSize="2xs">
               NOVO
             </Text>
           </View>
@@ -158,11 +160,11 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
             <Heading lineHeight="xl" fontSize="xl" letterSpacing="lg">
               Bicileta
             </Heading>
-            <Heading lineHeight="xl" fontSize="xl" color="product.blue-light">
+            <Heading lineHeight="xl" fontSize="xl" color="blue.100">
               R$ 130,00
             </Heading>
           </HStack>
-          <Text color="base.gray-2" fontSize="sm">
+          <Text color="gray.200" fontSize="sm">
             Cras congue cursus in tortor sagittis placerat nunc, tellus arcu.
             Vitae ante leo eget maecenas urna mattis cursus. Mauris metus amet
             nibh mauris mauris accumsan, euismod. Aenean leo nunc, purus iaculis
@@ -180,7 +182,7 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
           {paymentTypes.map((item) => (
             <HStack alignItems="center" key={item.title} mt="1">
               <Icon as={item.icon} size={18} />
-              <Text ml="2" color="base.gray-2" fontSize="sm">
+              <Text ml="2" color="gray.200" fontSize="sm">
                 {item.title}
               </Text>
             </HStack>
@@ -192,18 +194,18 @@ const PreviewAdvertisement: React.FC<IProductProps> = ({
         h="20"
         alignContent="center"
         alignItems="center"
-        bg="base.gray-7"
+        bg="gray.700"
         justifyContent="space-between"
       >
         <Button
-          leftIcon={<ArrowLeft size={16} color="#3E3A40" />}
+          leftIcon={<ArrowLeft size={16} color={theme.colors.gray[200]} />}
           title="Voltar e editar"
           type="gray"
           flex={1}
           mr="3"
         />
         <Button
-          leftIcon={<Tag size={16} color="#EDECEE" />}
+          leftIcon={<Tag size={16} color={theme.colors.gray[600]} />}
           title="Publicar"
           type="blue"
           flex={1}

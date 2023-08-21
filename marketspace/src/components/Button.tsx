@@ -14,7 +14,7 @@ const Button: React.FC<IButtonProps> = ({ type = 'black', title, ...rest }) => {
   return (
     <NativeButton px="3" variant={type} {...rest}>
       <Text
-        color={type === 'gray' ? 'base.gray-2' : 'base.gray-7'}
+        color={type === 'gray' ? 'gray.200' : 'gray.700'}
         fontFamily="heading"
         lineHeight="md"
       >

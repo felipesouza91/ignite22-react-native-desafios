@@ -1,4 +1,4 @@
-import { HStack, Heading, IconButton, View } from 'native-base'
+import { HStack, Heading, IconButton, View, useTheme } from 'native-base'
 import { ArrowLeft, PencilSimple, Plus } from 'phosphor-react-native'
 import React from 'react'
 interface IHeaderProps {
@@ -11,6 +11,7 @@ const Header: React.FC<IHeaderProps> = ({
   showBack,
   showBeforeIcon = '',
 }) => {
+  const theme = useTheme()
   return (
     <HStack mt="7" px="6" justifyContent="space-between" alignItems="center">
       {showBack ? (
@@ -18,15 +19,17 @@ const Header: React.FC<IHeaderProps> = ({
       ) : (
         <View />
       )}
-      <Heading fontSize="xl" color="base.gray-1">
+      <Heading fontSize="xl" color="gray.100">
         {title}
       </Heading>
       {showBeforeIcon !== 'new' && showBeforeIcon !== 'edit' ? (
         <View />
       ) : showBeforeIcon === 'edit' ? (
-        <IconButton icon={<PencilSimple size={24} color="#1A181B" />} />
+        <IconButton
+          icon={<PencilSimple size={24} color={theme.colors.gray[100]} />}
+        />
       ) : (
-        <IconButton icon={<Plus size={24} color="#1A181B" />} />
+        <IconButton icon={<Plus size={24} color={theme.colors.gray[100]} />} />
       )}
     </HStack>
   )

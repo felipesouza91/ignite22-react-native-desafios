@@ -8,6 +8,7 @@ import {
   Text,
   VStack,
   View,
+  useTheme,
 } from 'native-base'
 import {
   ArrowRight,
@@ -26,7 +27,7 @@ const listTest = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 const Home: React.FC = () => {
   const [showFilterModal, setShowFilterModal] = useState(false)
-
+  const theme = useTheme()
   function handleShowFilterModal() {
     setShowFilterModal(true)
   }
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <VStack flex={1} bg="base.gray-6" px="6">
+    <VStack flex={1} bg="gray.600" px="6">
       <HStack mt="12" justifyContent="space-between" flexWrap="wrap">
         <HStack flex={1}>
           <Avatar
@@ -48,10 +49,10 @@ const Home: React.FC = () => {
             mr="10px"
           />
           <VStack>
-            <Text fontSize="md" color="base.gray-1">
+            <Text fontSize="md" color="gray.100">
               Bem vindo,
             </Text>
-            <Heading fontSize="md" color="base.gray-1">
+            <Heading fontSize="md" color="gray.100">
               Felipe!
             </Heading>
           </VStack>
@@ -59,7 +60,7 @@ const Home: React.FC = () => {
         <Button title="Criar anúncio" />
       </HStack>
       <VStack mt="8">
-        <Text fontSize="sm" color="base.gray-3">
+        <Text fontSize="sm" color="gray.300">
           Seus produtos anunciados para venda
         </Text>
         <HStack
@@ -71,24 +72,27 @@ const Home: React.FC = () => {
           alignItems="center"
         >
           <Icon
-            as={<Tag color="#364D9D" weight="bold" />}
+            as={<Tag color={theme.colors.blue[500]} weight="bold" />}
             size={22}
-            color="product.blue"
           />
           <VStack ml="4" mr="auto">
             <Heading>4</Heading>
             <Text>anúncios ativos</Text>
           </VStack>
           <HStack alignContent="baseline" justifyContent="center">
-            <Heading fontSize="sm" mr="2" color="product.blue">
+            <Heading fontSize="sm" mr="2" color="blue.500">
               Meus anúncios
             </Heading>
-            <ArrowRight size={16} color="#364D9D" weight="bold" />
+            <ArrowRight
+              size={16}
+              color={theme.colors.blue[500]}
+              weight="bold"
+            />
           </HStack>
         </HStack>
       </VStack>
       <VStack mt="8">
-        <Text fontSize="sm" color="base.gray-3" mb="3">
+        <Text fontSize="sm" color="gray.300" mb="3">
           Compre produtos variados
         </Text>
         <Input
@@ -98,7 +102,7 @@ const Home: React.FC = () => {
               <IconButton
                 icon={<Icon as={<MagnifyingGlass weight="bold" />} size={20} />}
               />
-              <Divider bg="base.gray-3" thickness="1" orientation="vertical" />
+              <Divider bg="gray.300" thickness="1" orientation="vertical" />
               <IconButton
                 onPress={handleShowFilterModal}
                 icon={<Icon as={<Sliders weight="bold" />} size={20} />}
