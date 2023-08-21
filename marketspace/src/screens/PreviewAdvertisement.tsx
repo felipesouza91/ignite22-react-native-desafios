@@ -1,4 +1,5 @@
 import {
+  Center,
   FlatList,
   HStack,
   Heading,
@@ -10,21 +11,19 @@ import {
   View,
 } from 'native-base'
 import {
+  ArrowLeft,
   Bank,
   Barcode,
   CreditCard,
   Money,
-  Power,
   QrCode,
-  TrashSimple,
-  WhatsappLogo,
+  Tag,
 } from 'phosphor-react-native'
 import React, { useRef, useState } from 'react'
 import { Dimensions } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 import { Avatar } from '../components/Avatar'
 import Button from '../components/Button'
-import { Header } from '../components/Header'
 
 const paymentTypes = [
   {
@@ -58,24 +57,26 @@ interface IAppFlatList {
   scrollToIndex: ({ animated, index, viewPosition }) => void
 }
 
-const Product: React.FC<IProductProps> = ({
+const PreviewAdvertisement: React.FC<IProductProps> = ({
   advertisement,
   isEditable = false,
 }) => {
   const width = Dimensions.get('window').width
-  const disabled = false
   const [currentItem, setCurrentItem] = useState(0)
   const listRef = useRef<IAppFlatList>()
   return (
     <VStack flex={1} bg="base.gray-6">
-      <Header showBeforeIcon={isEditable ? 'edit' : null} showBack />
-      <View mt="2">
-        <View
-          opacity={disabled ? 0.4 : 1}
-          bgColor={disabled ? 'base.gray-1' : 'transparent'}
-        >
+      <Center bg="product.blue-light" h="121px">
+        <Heading fontSize="md" color="base.gray-7" mt="9">
+          Pré visualização do anúncio
+        </Heading>
+        <Text fontSize="sm" color="base.gray-7">
+          É assim que seu produto vai aparecer!
+        </Text>
+      </Center>
+      <View>
+        <View>
           <Carousel
-            enabled={!disabled}
             loop
             width={width}
             height={280}
@@ -120,19 +121,7 @@ const Product: React.FC<IProductProps> = ({
               console.log(sliderIndex)
             }}
           />
-          {/* */}
         </View>
-        {disabled && (
-          <Heading
-            color="base.gray-7"
-            bottom={280 / 2}
-            left={width / 2 - 65}
-            position="absolute"
-            fontSize="sm"
-          >
-            {'Anúncio desativado'.toUpperCase()}
-          </Heading>
-        )}
       </View>
       <ScrollView
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 10 }}
@@ -196,55 +185,32 @@ const Product: React.FC<IProductProps> = ({
               </Text>
             </HStack>
           ))}
-          {isEditable && (
-            <VStack mt="8" mb="2">
-              {!disabled ? (
-                <Button
-                  leftIcon={<Power size={16} color="#EDECEE" />}
-                  title="Desativar anúncio"
-                  mb="2"
-                />
-              ) : (
-                <Button
-                  leftIcon={<Power size={16} color="#EDECEE" />}
-                  title="Reativar anúncio"
-                  mb="2"
-                  type="blue"
-                />
-              )}
-              <Button
-                leftIcon={<TrashSimple size={16} color="#5F5B62" />}
-                title="Excluir anúncio"
-                type="gray"
-              />
-            </VStack>
-          )}
         </VStack>
       </ScrollView>
-      {!isEditable && (
-        <HStack
-          px="6"
-          h="20"
-          alignContent="center"
-          alignItems="center"
-          bg="base.gray-7"
-          justifyContent="space-between"
-        >
-          <HStack alignItems="flex-end">
-            <Text fontWeight="bold" color="product.blue">
-              R$
-            </Text>
-            <Heading color="product.blue">120,00</Heading>
-          </HStack>
-          <Button
-            leftIcon={<WhatsappLogo size={16} color="#EDECEE" weight="fill" />}
-            title="Entrar em contato"
-            type="blue"
-          />
-        </HStack>
-      )}
+      <HStack
+        px="6"
+        h="20"
+        alignContent="center"
+        alignItems="center"
+        bg="base.gray-7"
+        justifyContent="space-between"
+      >
+        <Button
+          leftIcon={<ArrowLeft size={16} color="#3E3A40" />}
+          title="Voltar e editar"
+          type="gray"
+          flex={1}
+          mr="3"
+        />
+        <Button
+          leftIcon={<Tag size={16} color="#EDECEE" />}
+          title="Publicar"
+          type="blue"
+          flex={1}
+        />
+      </HStack>
     </VStack>
   )
 }
 
-export { Product }
+export { PreviewAdvertisement }
